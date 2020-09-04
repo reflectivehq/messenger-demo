@@ -1,12 +1,14 @@
 const { define, types, validations } = require("local_orm");
 
+const blankValidation = (val) =>
+  val ? [null, true] : ["can't be blank", false];
 const Store = define({
   name: "messenger",
   schema: {
     messages: {
       body: {
         type: types.string,
-        validations: [validations.present, validations.maxLength(1000)],
+        validations: [blankValidation],
       },
       timestamp: {
         type: types.integer,
@@ -17,12 +19,18 @@ const Store = define({
     users: {
       name: {
         type: types.string,
-        validations: [validations.present, validations.maxLength(64)],
+        validations: [blankValidation],
       },
       timestamp: {
         type: types.integer,
         validations: [validations.present],
         defaultVal: () => Date.now(),
+      },
+    },
+    currentUsers: {
+      userId: {
+        type: types.string,
+        validations: [blankValidation],
       },
     },
   },

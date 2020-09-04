@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import tw from "twin.macro";
 
 const MessageContainer = styled.div`
-  ${tw`py-2 px-4 rounded border-0 text-base`}
+  ${tw`p-4 rounded-lg border-0 text-base`}
   ${(p) =>
     p.primary
       ? tw`bg-blue-500 hover:bg-blue-600 text-white`

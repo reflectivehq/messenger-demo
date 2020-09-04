@@ -1,43 +1,61 @@
-import React, { useCallback, useState } from "react";
+import { createGlobalStyle } from "styled-components";
+import React, { useState, useCallback, useEffect } from "react";
 
 import tw from "twin.macro";
 
 import Button from "./components/Button";
-import Input from "./components/Input";
-import Message from "./components/Message";
+import Messenger from "./components/Messenger";
+import SignIn from "./components/SignIn";
 import Store from "./store";
 
-const AppContainer = tw.div`p-6 flex flex-col space-y-6 mx-auto max-w-6xl`;
-const HorizontalList = tw.div`flex space-x-2 items-center`;
-const VerticalList = tw.div`flex flex-col space-y-2 items-start`;
-const Title = tw.h1`text-gray-900 font-bold text-xl`;
-const Form = tw.form``;
+const AppContainer = tw.div`flex flex-col mx-auto  h-screen box-border bg-white`;
+const Title = tw.h1`font-bold text-xl`;
+const Header = tw.div`flex justify-between items-center bg-blue-600 py-2 px-4 text-white`;
+const SignOutButton = tw(Button)`flex justify-between items-center`;
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+`;
 
 const App = () => {
-  const [messages = [], setMessages] = useState(Store.messages.all());
+  const [user, setUser] = useState();
 
-  const getMessages = useCallback(() => {
-    setMessages(Store.messages.all());
+  useEffect(() => {
+    const [session] = Store.currentUsers.all();
+    if (session) {
+      const currentUser = Store.users.find(session.userId);
+      if (currentUser) setUser(currentUser);
+    }
   }, []);
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    const [err, message] = Store.messages.save({ body: "Blah", userId: "1" });
-    setMessages([...messages, message]);
+  const handleSignOut = useCallback(() => {
+    Store.currentUsers
+      .all()
+      .forEach((session) => Store.currentUsers.destroy(session.id));
+    setUser(null);
   }, []);
 
   return (
     <AppContainer>
-      <Title>Messenger</Title>
-      {messages.map((message) => (
-        <Message primary>{message.body}</Message>
-      ))}
-      <HorizontalList>
-        <Form onSubmit={handleSubmit}>
-          <Input type="text" />
-          <Button primary label="Submit" type="submit" />
-        </Form>
-      </HorizontalList>
+      <Header>
+        <Title>Messenger</Title>
+        {user && (
+          <>
+            <span>{user.name}</span>
+            <SignOutButton
+              label="Sign Out"
+              type="button"
+              size="small"
+              onClick={handleSignOut}
+            />
+          </>
+        )}
+      </Header>
+      {user ? <Messenger user={user} /> : <SignIn onSignIn={setUser} />}
+      <GlobalStyle />
     </AppContainer>
   );
 };
