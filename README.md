@@ -2,6 +2,11 @@
 
 This demo project uses [React](https://reactjs.org) and [`create-react-app`](https://github.com/facebook/create-react-app) for the JS and HTML framework. For styles it is using [`styled-components`](https://styled-components.com), [tailwind](http://tailwindcss.com), and [`twin.macro`](https://github.com/ben-rogerson/twin.macro#readme) to tie the two together. It's using [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) as a data store and [`local_orm`](https://github.com/hiquest/local_orm/) to interface with the data.
 
+### Start by forking and cloning this repo.
+
+Fork in the Github UI.
+
+### `git clone git@github.com:<YOUR USERNAME>/messenger-demo.git`
 
 In the project directory, you can run:
 
