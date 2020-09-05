@@ -22,7 +22,7 @@ You will also see any lint errors in the console.
 
 The project is a simple messaging app, users can enter their name to "sign in", then post messages into the log for other users to see and respond to. In this project you will implement the ability to highlight the text of messages that have previously been posted. Here are the requirements:
 
-1. A user can highlight text with their mouse, when text is highlighted, a visual component is shown to allow the user to save the highlight. It's up to you to decide how the visual component is shown, it could be a tooltip, drawer, hotkey suggestion, or anything else.
+1. A user can highlight text with their mouse, when text is highlighted, a visual component is shown to allow the user to save the highlight. It's up to you to decide how the visual component is shown, it could be a tooltip, drawer, hotkey suggestion, or anything else. For more information on selecting highlighted text see: [window.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection), [Selection.anchorOffset](https://developer.mozilla.org/en-US/docs/Web/API/Selection/anchorOffset), and [Selection.focusOffset](https://developer.mozilla.org/en-US/docs/Web/API/Selection/focusOffset).
 1. When a highlight is saved it should be presisted to the data store (`localStorage`). The schema for highlights is up to you to create.
 1. When a message is displayed, highlights should be shown as a semi-transparent color behind the text. Each user who submits highlights should have a unique color, and all of their highlights should always appear in that color.
 1. Highlights are continguous and a single highlight cannot span multiple messages.
