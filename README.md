@@ -1,16 +1,19 @@
-## Getting Started
 
 This demo project uses [React](https://reactjs.org) and [`create-react-app`](https://github.com/facebook/create-react-app) for the JS and HTML framework. For styles it is using [`styled-components`](https://styled-components.com), [tailwind](http://tailwindcss.com), and [`twin.macro`](https://github.com/ben-rogerson/twin.macro#readme) to tie the two together. It's using [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) as a data store and [`local_orm`](https://github.com/hiquest/local_orm/) to interface with the data.
 
-### Start by forking and cloning this repo.
+## Getting Started
 
-Fork in the Github UI.
+Start by cloning this repo.
 
-### `git clone git@github.com:<YOUR USERNAME>/messenger-demo.git`
+#### `git clone git@github.com:reflectivehq/messenger-demo.git`
+
+Create a branch for your solution.
+
+#### `git checkout -b <YOURNAME>`
 
 In the project directory, you can run:
 
-### `yarn start`
+#### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -18,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-## Scenario
+## TODO
 
 The project is a simple messaging app, users can enter their name to "sign in", then post messages into the log for other users to see and respond to. In this project you will implement the ability to highlight the text of messages that have previously been posted. Here are the requirements:
 
